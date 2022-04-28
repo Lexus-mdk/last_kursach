@@ -1,3 +1,13 @@
+Курсовая работа "Калькулятор расчета стоимости кабелей"
+Дамб базы данных - yii2basic.sql;
+
+Использовался фреймворк Yii2.
+Язык программирования PHP.
+Использованная технология - Ajax.
+
+Далее идет гайд по установке приложения.
+
+
 <p align="center">
     <a href="https://github.com/yiisoft" target="_blank">
         <img src="https://avatars0.githubusercontent.com/u/993323" height="100px">
