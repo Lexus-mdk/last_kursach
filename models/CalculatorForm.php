@@ -2,7 +2,6 @@
 
 namespace app\models;
 
-use Yii;
 use yii\base\Model;
 use yii\bootstrap4\Html;
 
@@ -12,11 +11,7 @@ class CalculatorForm extends Model{
     public $checkbox;
     public $cost;
     public $button;
-    public $radioList = [
-        'Средний' => 1.3,
-        'Толстый' => 3.0,
-        'Тонкий' => 0.5
-    ];
+    public $radioList;
 
     public function __construct()
     {

@@ -3,7 +3,6 @@
 namespace app\models;
 
 use yii\bootstrap4\Html;
-use yii\bootstrap4\ActiveForm;
 use yii\base\Model;
 use Yii;
 
@@ -112,9 +111,8 @@ class Basket extends Model
                 if($key!=0)
                 {
                     $result.= '<div>';
-                    // $result.= Html::hiddenInput('id', Null, ['id' => 'button-name']);
                     $result.= 'Название - '. $value['type'] . ', ';
-                    $result.= 'Цена за см - '. $value['price'] . ' см, ';
+                    $result.= 'Цена за см - '. $value['price'] . ' руб, ';
                     $result.= 'С коннекторами - ';
                     $result.= $value['patchcord'] == 1 ? 'Да, ' : 'Нет, ';
                     $result.= 'Стоимость кабеля - <strong id="'. $key .'">'. $value['cost'] .' руб</strong>, ';

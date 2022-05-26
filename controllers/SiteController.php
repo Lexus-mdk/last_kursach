@@ -80,7 +80,6 @@ class SiteController extends appController
             elseif($model->button==='tobasket' && !Yii::$app->user->isGuest)
             {
                 $basket = new Basket();
-                // $basket->unsetBusket();
                 $basket->addToBasket($model);
                 return '<h2>Товар добавлен в корзину!</h2>';
             }else
@@ -119,11 +118,9 @@ class SiteController extends appController
 
         if(\Yii::$app->request->isAjax)
         {
-            // $order_product = new OrderProducts();
             $obj = OrderProducts::findOne(['order_id'=>\Yii::$app->request->get('id'), 'product_id'=>\Yii::$app->request->get('product_id')]);
             $product_cost = $obj->cost;
             $obj->delete();
-            // $order = new Order();
             $order_object = Order::findOne(['order_id'=>\Yii::$app->request->get('id'), 'user_id'=>Yii::$app->user->identity->id]);
             if (!empty($order_object))
             {
@@ -241,6 +238,7 @@ class SiteController extends appController
             $user = new User();
             $user->username = $model->username;
             $user->email = $model->email;
+            $user->fio = $model->fio;
             $user->password = \Yii::$app->security->generatePasswordHash($model->password);
             if($user->save()){
                 if (Yii::$app->user->login($user, 3600*24*30)) {

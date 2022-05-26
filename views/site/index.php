@@ -35,7 +35,7 @@ $this->registerJs($script, \yii\web\View::POS_HEAD);
 
     <?= $form->field($model, 'radio')->radioList($model->getRadioList()) ?>
     
-    <?= $form->field($model, 'length')->textInput() ?>
+    <?= $form->field($model, 'length', ['template' => '{label} {input} <br> {error}'])->textInput() ?>
 
     <?= $form->field($model, 'checkbox')->checkbox(['template' => '{input} {label}']) ?>
     
@@ -54,15 +54,9 @@ $this->registerJs($script, \yii\web\View::POS_HEAD);
     </div>
 </div>
 <?php ActiveForm::end(); ?>
-
-
 </div>
-    <div id='result'></div>
-
-    
-
+<div id='result'></div>
 <? 
-// 
 $js = <<<JS
     $('form').on('beforeSubmit', function(){
     var data = $(this).serialize();    
@@ -84,3 +78,4 @@ $js = <<<JS
 JS;
 $this->registerJs($js);
 ?>
+<?php $this->registerCssFile('css/css.css') ?>

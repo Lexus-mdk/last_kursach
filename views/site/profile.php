@@ -13,7 +13,8 @@ use app\models\Profile;
 </div>
 <div style="font-size: 18px">
 Логин: <?= Yii::$app->user->identity->username?> <br>
-Email: <?= Yii::$app->user->identity->email?>
+Email: <?= Yii::$app->user->identity->email?> <br>
+ФИО: <?= Yii::$app->user->identity->fio?>
 </div>
 <div style="display: flex; align-items: center; flex-direction: row; justify-content: center">
     <h1>Мои заказы</h1>
