@@ -43,7 +43,8 @@ class Order extends \yii\db\ActiveRecord
             'cost' => 'Стоимость',
             'user_id' => 'Идентификатор пользователя',
             'status' => 'Статус',
-            'date' => 'Дата создания'
+            'date' => 'Дата создания',
+            'fio' => 'ФИО'
         ];
     }
 
@@ -58,7 +59,8 @@ class Order extends \yii\db\ActiveRecord
         $this->products_count = count($session['basket']) - 1;
         $this->status = "Ожидание принятия заказа";
         $this->date = date('Y-m-d H:i:s');
-        $this->user_id = Yii::$app->user->id;
+        $this->user_id = Yii::$app->user->identity->id;
+        $this->fio = Yii::$app->user->identity->fio;
         if($this->save())
         {
             try{

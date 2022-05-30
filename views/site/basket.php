@@ -68,9 +68,8 @@ ActiveForm::end();
         'id' => 'basket-form',
     ]); ?>
     <?= Html::hiddenInput('cost', Null, ['id' => 'cost']) ?>
-    <div id="result2">
-        <?= $model->allCost() ?>
-    </div>
+    
+    
 <?php ActiveForm::end(); ?>
 <div id='rat'></div>
 <?

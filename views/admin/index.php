@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
+use app\models\User;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\OrderSearch */
@@ -17,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Создать заказ', ['create'], ['class' => 'btn btn-success']) ?>
+        <!-- <?= Html::a('Создать заказ', ['create'], ['class' => 'btn btn-success']) ?> -->
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -30,8 +31,28 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'order_id',
             'products_count',
-            'cost',
-            'user_id',
+            // 'user_id',
+            [
+                'attribute'=>'cost',
+                'label'=>'Стоимость в руб',
+                'format'=>'text', // Возможные варианты: raw, html
+            ],
+            // [
+            //     'attribute'=>'fio',
+            //     'label'=>'ФИО',
+            //     'format'=>'text', // Возможные варианты: raw, html
+            //     'content'=>function($data){
+            //         $ret = User::findOne(['id'=>$data->user_id]);
+            //         return $ret->fio;
+            //     },
+            //     'filter' => function($data)
+            //     {
+            //         $user = User::findOne(['id'=>$data->user_id]);
+            //         return User::find(['id'=>$data->user_id]);
+            //     }
+                
+            // ],
+            'fio',
             'status',
             'date',
             [

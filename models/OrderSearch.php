@@ -19,7 +19,7 @@ class OrderSearch extends Order
         return [
             [['order_id', 'products_count', 'user_id'], 'integer'],
             [['cost'], 'number'],
-            [['status', 'date'], 'safe'],
+            [['status', 'date', 'fio'], 'safe'],
         ];
     }
 
@@ -49,6 +49,15 @@ class OrderSearch extends Order
             'query' => $query,
         ]);
 
+        // $dataProvider->setSort([
+        //     'attributes'=>[
+        //         'fio' => [
+        //             'label'=>'FIO',
+        //             'default' => SORT_ASC
+        //         ]
+        //     ]
+        // ]);
+
         $this->load($params);
 
         if (!$this->validate()) {
@@ -56,6 +65,8 @@ class OrderSearch extends Order
             // $query->where('0=1');
             return $dataProvider;
         }
+
+        
 
         // grid filtering conditions
         $query->andFilterWhere([
@@ -66,7 +77,7 @@ class OrderSearch extends Order
             'date' => $this->date,
         ]);
 
-        $query->andFilterWhere(['like', 'status', $this->status]);
+        $query->andFilterWhere(['like', 'fio', $this->fio])->andFilterWhere(['like', 'status', $this->status]);
 
         return $dataProvider;
     }

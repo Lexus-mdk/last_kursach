@@ -44,14 +44,15 @@ class Basket extends Model
         {
             return '';
         }
-        $cost_html = number_format($this->basket_cost, 2, '.', '') . " руб " . Html::submitButton('Купить', [
+        
+        $cost_html = '<th score="row"></th><td></td><td></td><td></td></td><td><td>Итого: <strong>' . number_format($this->basket_cost, 2, '.', '') . ' руб</strong></td><td>'. Html::submitButton('Оформить заказ', [
             'class' => 'btn btn-primary', 
             'id'=>'calculate', 
             'name'=>number_format($this->basket_cost, 2, '.', ''),
             'form'=>'basket-form',
             'onclick' => 'handleSubmitButton(this, "#cost")'
             ]
-        );
+        ) . '</td>';
         return $cost_html;
     }
 
@@ -105,18 +106,32 @@ class Basket extends Model
     {
         if(count($this->session->get('basket'))>=2)
         {
-            $result = '<div style="display:flex; flex-direction:column" id="result">';
+            $c = 0;
+            $result = '<div id="result"><table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Тип</th>
+                <th scope="col">Стоимость за см</th>
+                <th scope="col">С коннекторами</th>
+                <th scope="col">Стоимость</th>
+                <th scope="col">Длина в см</th>
+                <th scope="col"></th>
+                
+              </tr>
+            </thead>
+            <tbody>';
             foreach($this->session->get('basket') as $key=>$value)
             {
                 if($key!=0)
                 {
-                    $result.= '<div>';
-                    $result.= 'Название - '. $value['type'] . ', ';
-                    $result.= 'Цена за см - '. $value['price'] . ' руб, ';
-                    $result.= 'С коннекторами - ';
-                    $result.= $value['patchcord'] == 1 ? 'Да, ' : 'Нет, ';
-                    $result.= 'Стоимость кабеля - <strong id="'. $key .'">'. $value['cost'] .' руб</strong>, ';
-                    $result.= 'Длина кабеля - ';
+                    $c++;
+                    $result.= '<tr><th scope="row">'. $c . '</th>';
+                    $result.= '<td>'. $value['type'] . '</th>';
+                    $result.= '<td>'. $value['price'] . ' руб</td><td>';
+                    $result.= $value['patchcord'] == 1 ? 'Да</td>' : 'Нет</td>';
+                    $result.= '<td><strong id="'. $key .'">'. $value['cost'] .' руб</strong></td>';
+                    $result.= '<td>';
                     $result.= Html::submitButton('<i class="fa fa-minus"></i>', [
                         'class' => 'btn btn-link px-2', 
                         'id'=>'minus-btn', 
@@ -140,8 +155,8 @@ class Basket extends Model
                         'form'=>'hidden-form',
                         'onclick' => 'plus(this)'
                         ]
-                    );
-                    $result.= Html::submitButton('Удалить', [
+                    ) . '</td>';
+                    $result.= '<td>' . Html::submitButton('Удалить', [
                         'class' => 'btn btn-primary', 
                         'id'=>'calculate', 
                         'name'=>$key,
@@ -149,12 +164,15 @@ class Basket extends Model
                         'onclick' => 'handleSubmitButton(this, "#button-name")'
                         ]
                     );
-                    $result.= '</div>';
+                    $result.= '</td>';
                     $this->basket_cost += $value['cost'];
                 }
 
             }
-            $result.='</div>';
+            $result.='<tr id="result2">'. $this->allCost() .'</tr>
+            </tbody>
+            </table>
+            </div>';
             return $result;
         }
         else

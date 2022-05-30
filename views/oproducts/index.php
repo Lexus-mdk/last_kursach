@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Добавить продукт в заказ', ['create'], ['class' => 'btn btn-success']) ?>
+        <!-- <?= Html::a('Добавить продукт в заказ', ['create'], ['class' => 'btn btn-success']) ?> -->
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -29,12 +29,12 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'product_id',
-            'order_id',
+            // 'order_id',
             'product_name',
             'price',
             'length',
             //'patchcord',
-            //'cost',
+            'cost',
             [
                 'class' => ActionColumn::class,
                 'urlCreator' => function ($action, $model, $key, $index, $column) {
