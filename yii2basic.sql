@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Апр 28 2022 г., 15:38
+-- Время создания: Май 30 2022 г., 10:42
 -- Версия сервера: 8.0.19
 -- Версия PHP: 7.4.5
 
@@ -41,7 +41,10 @@ CREATE TABLE `order` (
 --
 
 INSERT INTO `order` (`order_id`, `products_count`, `cost`, `user_id`, `status`, `date`) VALUES
-(74, 1, 554, 1, 'Ожидание принятия заказа', '2022-04-28 15:17:21');
+(79, 2, 534, 16, 'Принят', '2022-05-29 17:13:33'),
+(80, 2, 789, 16, 'Ожидание принятия заказа', '2022-05-29 17:13:50'),
+(81, 1, 2070, 16, 'Ожидание принятия заказа', '2022-05-29 17:31:47'),
+(82, 1, 422, 16, 'Ожидание принятия заказа', '2022-05-29 17:32:07');
 
 -- --------------------------------------------------------
 
@@ -64,7 +67,12 @@ CREATE TABLE `order_products` (
 --
 
 INSERT INTO `order_products` (`product_id`, `order_id`, `product_name`, `price`, `length`, `patchcord`, `cost`) VALUES
-(54, 74, 'Кабель 2', 3, '178', 1, 554);
+(61, 79, 'Кабель 3', 1.5, '178', 0, 267),
+(62, 79, 'Кабель 3', 1.5, '178', 0, 267),
+(63, 80, 'Кабель 1', 2, '156', 0, 312),
+(64, 80, 'Кабель 2', 3, '159', 0, 477),
+(65, 81, 'Кабель 4', 6, '345', 0, 2070),
+(66, 82, 'Кабель 4', 6, '67', 1, 422);
 
 -- --------------------------------------------------------
 
@@ -98,6 +106,7 @@ INSERT INTO `products` (`id`, `product_name`, `description`, `price`) VALUES
 CREATE TABLE `user` (
   `id` int NOT NULL,
   `username` varchar(255) COLLATE utf8_bin NOT NULL,
+  `fio` varchar(255) COLLATE utf8_bin NOT NULL,
   `email` varchar(255) COLLATE utf8_bin NOT NULL,
   `password` varchar(255) COLLATE utf8_bin NOT NULL,
   `role` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT 'user'
@@ -107,22 +116,10 @@ CREATE TABLE `user` (
 -- Дамп данных таблицы `user`
 --
 
-INSERT INTO `user` (`id`, `username`, `email`, `password`, `role`) VALUES
-(1, 'user', '123@123.123', '$2y$13$UuCWR6zcbMO4htdY7uPNP.0l3R5kctAK5MVq833s2/JHG.rjMmZO.', 'user'),
-(2, 'user', '123@123.12', '$2y$13$c9Vp7dneuvIjnkOT/4RT9uMkemDF5SrFFScUeIqtOdkPwU3R8//Si', 'admin'),
-(3, 'userыы', '123@123.1234', '$2y$13$ispUt3Vr9iXBpI7wkeped.LapUondOOx5/sleTZmv3vdS76oe1k1y', 'user'),
-(4, 'userыы', '123@123.1236', '$2y$13$KlPwITrXvTjwfgCSHRwXp.AjxUIyzfvSO3QKOtrCA4H4DQzOPjayG', 'user'),
-(5, 'user', '123@123.12345', '$2y$13$Xfo4fJ0I.bpa0sF4efY7A.sWxnCHUz4k4PKFbM4Enn5cONlTQKqAe', 'user'),
-(6, 'Lexus', '123@123.321', '$2y$13$ISZaP.pncxPA8XrWa.a4PeiGNB9rD57smlXNG4caKyp2IFuHrRwoa', 'user'),
-(7, 'admin', 'admin@admin.admin', '$2y$13$R3UaDJlPcpNsNcxW/B6feezX0FXYL/.O3OF1t2H8PsMZtKymu0YPW', 'admin'),
-(8, 'user0', '123@123.1111', '$2y$13$svgIc4x5DBJkjKgC0SDiVub3cWYyqdUplu3LEaviltlh.HkQz4Scq', 'user'),
-(9, 'Lexus', 'lex@mail.ru', '$2y$13$65iOsWMFC4uDVPm2ZgyAnekTbrTmEIWFM.Gb11AsnLenREyDn5nnq', 'user'),
-(10, 'Lexus', 'lex@mail.rus', '$2y$13$RAXZTBB7g5vWqSvmYKUjQOhX8ryzkTPphmKhQdjTOTfQAjZoq535C', 'user'),
-(11, 'Lexus', 'lex@mail.rusd', '$2y$13$DNGK6CRATWdt1KCQZEn.aeqpif8f3Ffz0mBk6NaI7BtYxfCbCcnJi', 'user'),
-(12, 'Lexus', 'lex@mail.rusdd', '$2y$13$3Z4kxfaLyoCd3nnJ05C6P.cHzFApIbwSCTSPtw1V0.aRlMBu5iMD6', 'user'),
-(13, 'Lexus', 'lex@mail.rusdda', '$2y$13$zvZp6WiC1btBuC6yCMNxc.hB1VxJ2f6Ri6db9txDGAz1rX4ev3Lg.', 'user'),
-(14, 'Lexus', 'lex@mail.rusddaa', '$2y$13$KzDElleIxJUvKjd1voPrlutBoYNEqVThidiFSJ1yp4SN2cV1CuIve', 'user'),
-(15, 'test', 'test@mail.ru', '$2y$13$mB6WLHPRmmT8RDyXUBq1B.vFcMSlRW1uYi384xVXJ4RR9TjBnIS3.', 'user');
+INSERT INTO `user` (`id`, `username`, `fio`, `email`, `password`, `role`) VALUES
+(7, 'admin', '', 'admin@admin.admin', '$2y$13$R3UaDJlPcpNsNcxW/B6feezX0FXYL/.O3OF1t2H8PsMZtKymu0YPW', 'admin'),
+(16, 'user', 'Бухвин Алексей Дмитриевич', '123@123.123', '$2y$13$C1df45hSG3hqsL1SSyYbnO1lWxTOTMBzEIyO/6v1dpK.tT5kPO82q', 'user'),
+(17, 'Lexuss', 'Бухвин Алексей Дмитриевич', '123@123.1234', '$2y$13$ai4HpZtjAYpZWLE7f/oFzuiJI40h3UZmX8WDI1muF1Su2N4eQ3rMG', 'user');
 
 --
 -- Индексы сохранённых таблиц
@@ -165,13 +162,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT для таблицы `order`
 --
 ALTER TABLE `order`
-  MODIFY `order_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+  MODIFY `order_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
 
 --
 -- AUTO_INCREMENT для таблицы `order_products`
 --
 ALTER TABLE `order_products`
-  MODIFY `product_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `product_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- AUTO_INCREMENT для таблицы `products`
@@ -183,7 +180,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT для таблицы `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц
