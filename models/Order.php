@@ -38,12 +38,12 @@ class Order extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'order_id' => 'Order ID',
-            'products_count' => 'Product count',
-            'cost' => 'Cost',
-            'user_id' => 'User ID',
-            'status' => 'Status',
-            'date' => 'Date'
+            'order_id' => 'Номер заказа',
+            'products_count' => 'Количество товаров',
+            'cost' => 'Стоимость',
+            'user_id' => 'Идентификатор пользователя',
+            'status' => 'Статус',
+            'date' => 'Дата создания'
         ];
     }
 

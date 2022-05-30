@@ -39,10 +39,10 @@ class Products extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'product_name' => 'Product Name',
-            'price' => 'price',
-            'description'=>'Description'
+            'id' => 'Идентификатор товара',
+            'product_name' => 'Наименование товара',
+            'price' => 'Стоимость за см',
+            'description'=>'Описание'
         ];
     }
 }

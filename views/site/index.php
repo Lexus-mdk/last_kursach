@@ -35,7 +35,7 @@ $this->registerJs($script, \yii\web\View::POS_HEAD);
 
     <?= $form->field($model, 'radio')->radioList($model->getRadioList()) ?>
     
-    <?= $form->field($model, 'length', ['template' => '{label} {input} <br> {error}'])->textInput() ?>
+    <?= $form->field($model, 'length', ['template' => '{label} {input} см <br> {error}'])->textInput() ?> 
 
     <?= $form->field($model, 'checkbox')->checkbox(['template' => '{input} {label}']) ?>
     

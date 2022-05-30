@@ -9,7 +9,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\OPSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Order Products';
+$this->title = 'Продукты заказа';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="order-products-index">
@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Order Products', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Добавить продукт в заказ', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>

@@ -4,8 +4,18 @@
 //echo Yii::$app->user->identity->username;
 //echo Yii::$app->user->identity->email;
 
-use app\models\Profile;
+use yii\widgets\ListView;
+use yii\data\ActiveDataProvider;
+use yii\widgets\Pjax;
+// use app\models\Profile;
 
+$dataProvider = new ActiveDataProvider([
+    'query' => $model::find(['user_id'=>Yii::$app->user->identity->id]),
+    'pagination' => [
+        'pageSize' => 6,
+    ],
+]);
+Pjax::begin(['enablePushState' => false, 'timeout' => 5000]);
 ?>
 
 <div style="display: flex; align-items: center; flex-direction: row; justify-content: center">
@@ -18,10 +28,20 @@ Email: <?= Yii::$app->user->identity->email?> <br>
 </div>
 <div style="display: flex; align-items: center; flex-direction: row; justify-content: center">
     <h1>Мои заказы</h1>
-    <? 
-    $pr = new Profile();
-    ?>
 </div>
 <div>
-    <?= $pr->getOrders() ?>
+    <?= ListView::widget([
+    'dataProvider' => $dataProvider,
+    'itemView' => '_order-view',
+    'itemOptions' => ['class' => 'card col-lg-4',
+    'tag' => 'div',
+    ],
+    'summary' => 'Показаны записи <strong>{begin}-{end}</strong> из <strong>{totalCount}</strong>.',
+    'layout' => '{summary}<div class="row">{items}</div>{pager}',
+    'pager' => ['class' => \yii\bootstrap4\LinkPager::class],
+    // 'options' => [
+    //     'class' => 'row ',
+    // ]
+]); ?>
 </div>
+<?php Pjax::end(); ?>

@@ -5,8 +5,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\OrderProducts */
 
-$this->title = 'Create Order Products';
-$this->params['breadcrumbs'][] = ['label' => 'Order Products', 'url' => ['index']];
+$this->title = 'Создать продукт в заказе';
+$this->params['breadcrumbs'][] = ['label' => 'Продукты заказа', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="order-products-create">

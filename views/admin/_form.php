@@ -19,12 +19,16 @@ use yii\bootstrap4\ActiveForm;
 
     <?= $form->field($model, 'user_id')->textInput() ?>
 
-    <?= $form->field($model, 'status')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'status')->dropDownList([
+            'Ожидание принятия заказа' => 'Ожидание принятия заказа',
+            'Принят' => 'Принят',
+            'Завершен'=>'Завершен'
+        ]); ?>
 
     <?= $form->field($model, 'date')->textInput() ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

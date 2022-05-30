@@ -198,7 +198,7 @@ class SiteController extends appController
             return $this->goHome();
         }
 
-        $model = new Profile();
+        $model = new Order();
         return $this->render('profile', [
             'model' => $model,
         ]);
@@ -217,7 +217,11 @@ class SiteController extends appController
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
+            if (\Yii::$app->user->identity->role == 'user')
+            {
+                return $this->goHome();
+            }
+            return $this->redirect('/admin/index');
         }
 
         $model->password = '';

@@ -45,12 +45,13 @@ class OrderProducts extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'order_id' => 'Order ID',
-            'product_name' => 'Product Name',
-            'price' => 'Price',
-            'length' => 'Length',
-            'patchcord' => 'Patchcord',
-            'cost' => 'Cost',
+            'product_id'=>'Идентификатор товара',
+            'order_id' => 'Идентификатор продукта',
+            'product_name' => 'Наименование',
+            'price' => 'Стоимость за см',
+            'length' => 'Длина в см',
+            'patchcord' => 'Коннектеры',
+            'cost' => 'Стоимость продукта',
         ];
     }
 
